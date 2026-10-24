@@ -80,8 +80,6 @@
         body.dark-mode .table td,
         body.dark-mode .stats-card h3,
         body.dark-mode .stats-card .text-muted,
-        body.dark-mode .stock-warning-pill,
-        body.dark-mode .stock-warning-badge,
         body.dark-mode .modal-content,
         body.dark-mode .modal-title,
         body.dark-mode .page-header h3,
@@ -164,21 +162,6 @@
             border-color: rgba(96,165,250,0.3);
         }
 
-        body.dark-mode .stock-warning-card {
-            background: linear-gradient(135deg, rgba(120, 53, 15, 0.38), rgba(120, 53, 15, 0.18));
-            border-left-color: #fbbf24;
-        }
-
-        body.dark-mode .stock-warning-pill {
-            background: rgba(15, 23, 42, 0.6);
-            color: #f8d6a2;
-            border-color: rgba(251, 191, 36, 0.2);
-        }
-
-        body.dark-mode .stock-warning-pill strong {
-            color: #fbbf24;
-        }
-
         body.dark-mode .stats-card .text-muted,
         body.dark-mode .stats-card h3 {
             color: #ffffff !important;
@@ -186,10 +169,6 @@
 
         body.dark-mode .stats-card .text-muted {
             opacity: 1;
-        }
-
-        body.dark-mode .stock-warning-button {
-            box-shadow: 0 8px 18px rgba(245, 158, 11, 0.25);
         }
 
         body.dark-mode .stat-detail-item {
@@ -636,99 +615,46 @@
         }
 
         .stock-warning-card {
-            padding: 1.25rem 1.35rem;
-            background: linear-gradient(135deg, #fff7ed 0%, #ffedd5 45%, #fef3c7 100%);
-            border: 1px solid rgba(245, 158, 11, 0.45);
-            border-left: 6px solid #f59e0b;
-            box-shadow: 0 18px 34px rgba(245, 158, 11, 0.14);
+            padding: 0.85rem 1.25rem;
+            background: rgba(245, 158, 11, 0.08);
+            border: 1px solid rgba(245, 158, 11, 0.25);
+            border-left: 4px solid #f59e0b;
+            border-radius: 12px;
+            box-shadow: none;
         }
 
         .stock-warning-icon {
-            width: 42px;
-            height: 42px;
-            border-radius: 12px;
+            width: 38px;
+            height: 38px;
+            border-radius: 10px;
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            background: rgba(245, 158, 11, 0.16);
-            color: #b45309;
-            font-size: 1.3rem;
-            font-weight: 800;
-        }
-
-        .stock-warning-label {
-            color: #b45309;
-            font-size: 0.76rem;
-            letter-spacing: 0.12em;
-            text-transform: uppercase;
-            font-weight: 800;
+            background: rgba(245, 158, 11, 0.15);
+            color: #d97706;
+            font-size: 1.15rem;
+            flex-shrink: 0;
         }
 
         .stock-warning-button {
             display: inline-flex;
             align-items: center;
-            justify-content: center;
-            gap: 0.45rem;
+            gap: 0.35rem;
             border: 1px solid rgba(217, 119, 6, 0.35);
-            background: linear-gradient(135deg, #fbbf24, #f59e0b);
-            color: #fff;
-            border-radius: 999px;
-            padding: 0.62rem 1rem;
-            font-size: 0.82rem;
-            font-weight: 800;
-            letter-spacing: 0.02em;
-            box-shadow: 0 8px 18px rgba(245, 158, 11, 0.22);
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            background: #ffffff;
+            color: #b45309;
+            border-radius: 8px;
+            padding: 0.45rem 0.9rem;
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: all 0.2s ease;
             cursor: pointer;
         }
 
         .stock-warning-button:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 12px 20px rgba(245, 158, 11, 0.28);
-        }
-
-        .stock-warning-badge {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            padding: 0.45rem 0.8rem;
-            border-radius: 999px;
-            background: rgba(251, 191, 36, 0.24);
+            background: #fef3c7;
             color: #92400e;
-            border: 1px solid rgba(217, 119, 6, 0.2);
-            font-size: 0.78rem;
-            font-weight: 800;
-        }
-
-        .stock-warning-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 0.8rem;
-            align-items: stretch;
-        }
-
-        .stock-warning-pill {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.45rem;
-            width: 100%;
-            min-height: 42px;
-            padding: 0.75rem 0.9rem;
-            border-radius: 999px;
-            background: rgba(255, 255, 255, 0.72);
-            color: #7c2d12;
-            border: 1px solid rgba(146, 64, 14, 0.12);
-            font-weight: 700;
-            font-size: 0.95rem;
-            box-shadow: inset 0 1px 0 rgba(255,255,255,0.6);
-            text-align: center;
-            line-height: 1.3;
-        }
-
-        .stock-warning-pill strong {
-            color: #b45309;
-            font-weight: 800;
+            border-color: #f59e0b;
         }
 
         .eyebrow {
@@ -1041,40 +967,6 @@
             border-radius: 8px;
         }
 
-        .stock-warning-card {
-            background: #fff3cd;
-            border: 1px solid #ffecb5;
-            border-left: 4px solid #ffc107;
-            border-radius: 8px;
-            box-shadow: none;
-        }
-
-        .stock-warning-button {
-            background: #ffc107;
-            border: 1px solid #e0a800;
-            border-radius: 6px;
-            box-shadow: none;
-            color: #212529;
-            transition: none;
-        }
-
-        .stock-warning-button:hover {
-            transform: none;
-            box-shadow: none;
-        }
-
-        .stock-warning-badge,
-        .stock-warning-pill {
-            background: #ffffff;
-            border: 1px solid #ffecb5;
-            border-radius: 6px;
-            box-shadow: none;
-            color: #664d03;
-        }
-
-        .stock-warning-badge {
-            background: #fff3cd;
-        }
 
         body.dark-mode {
             background: var(--bg-primary);
@@ -1132,22 +1024,27 @@
         }
 
         body.dark-mode .stock-warning-card {
-            background: #3b3420;
-            border-color: #665c35;
-            border-left-color: #ffc107;
+            background: rgba(245, 158, 11, 0.08);
+            border: 1px solid rgba(245, 158, 11, 0.22);
+            border-left: 4px solid #f59e0b;
+            box-shadow: none;
         }
 
-        body.dark-mode .stock-warning-pill,
-        body.dark-mode .stock-warning-badge {
-            background: #343a40;
-            border-color: #665c35;
-            color: #ffecb5;
+        body.dark-mode .stock-warning-icon {
+            background: rgba(245, 158, 11, 0.18);
+            color: #fbbf24;
         }
 
         body.dark-mode .stock-warning-button {
-            background: #ffc107;
-            border-color: #e0a800;
-            color: #212529;
+            background: rgba(245, 158, 11, 0.12);
+            border-color: rgba(245, 158, 11, 0.3);
+            color: #fcd34d;
+        }
+
+        body.dark-mode .stock-warning-button:hover {
+            background: rgba(245, 158, 11, 0.22);
+            color: #ffffff;
+            border-color: #fbbf24;
         }
         /* Sidebar collapse on desktop */
         @media (min-width: 992px) {

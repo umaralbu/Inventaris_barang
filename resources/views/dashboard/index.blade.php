@@ -35,17 +35,18 @@
         <div class="stock-warning-card card mb-4">
             <div class="d-flex justify-content-between align-items-center flex-wrap gap-3">
                 <div class="d-flex align-items-center gap-3">
-                    <div class="stock-warning-icon">⚠</div>
+                    <div class="stock-warning-icon">
+                        <i class="bi bi-exclamation-triangle-fill" aria-hidden="true"></i>
+                    </div>
                     <div>
-                        <p class="stock-warning-label mb-0">Peringatan stok</p>
-                        <h5 class="mb-0">Barang perlu segera diisi ulang</h5>
+                        <h6 class="mb-0 fw-bold">Peringatan Stok Menipis</h6>
+                        <small class="text-secondary">Ada {{ $lowStockItems->count() }} barang yang perlu segera diisi ulang.</small>
                     </div>
                 </div>
-                <div class="d-flex align-items-center gap-2">
+                <div>
                     <button type="button" class="stock-warning-button" data-bs-toggle="modal" data-bs-target="#lowStockModal">
-                        <span>⚠</span> Lihat daftar
+                        Lihat daftar <i class="bi bi-arrow-right ms-1" aria-hidden="true"></i>
                     </button>
-                    <span class="stock-warning-badge">{{ $lowStockItems->count() }} item</span>
                 </div>
             </div>
         </div>
@@ -54,11 +55,9 @@
             <div class="modal-dialog modal-lg modal-dialog-centered">
                 <div class="modal-content border-0 shadow-lg rounded-4">
                     <div class="modal-header border-0 px-4 pt-4 pb-2">
-                        <div class="d-flex align-items-center gap-3">
-                            <div class="stock-warning-icon modal-icon">⚠</div>
-                            <div>
-                                <h5 class="modal-title mb-0" id="lowStockModalLabel">Daftar stok menipis</h5>
-                            </div>
+                        <div class="d-flex align-items-center gap-2">
+                            <i class="bi bi-exclamation-triangle-fill text-warning fs-5" aria-hidden="true"></i>
+                            <h5 class="modal-title mb-0" id="lowStockModalLabel">Daftar Stok Menipis</h5>
                         </div>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
