@@ -29,7 +29,7 @@
             <table class="table">
                 <thead>
                     <tr>
-                        <th>#</th>
+                        <th>No</th>
                         <th>Nama</th>
                         <th>Deskripsi</th>
                         <th>Aksi</th>

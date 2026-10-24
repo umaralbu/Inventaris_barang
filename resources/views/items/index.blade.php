@@ -42,7 +42,6 @@
                     <option value="Tersedia" {{ request('status') == 'Tersedia' ? 'selected' : '' }}>Tersedia</option>
                     <option value="Dipinjam" {{ request('status') == 'Dipinjam' ? 'selected' : '' }}>Dipinjam</option>
                     <option value="Dipindahkan" {{ request('status') == 'Dipindahkan' ? 'selected' : '' }}>Dipindahkan</option>
-                    <option value="Rusak" {{ request('status') == 'Rusak' ? 'selected' : '' }}>Rusak</option>
                     <option value="Hilang" {{ request('status') == 'Hilang' ? 'selected' : '' }}>Hilang</option>
                 </select>
             </div>

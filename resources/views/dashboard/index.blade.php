@@ -168,7 +168,6 @@
                 <thead>
                     <tr>
                         <th>Barang</th>
-                        <th>Jenis</th>
                         <th>{{ auth()->user()->role === 'admin' ? 'Pengguna' : 'Status' }}</th>
                         <th>Tanggal & Waktu</th>
                     </tr>
@@ -177,13 +176,12 @@
                     @forelse($transactions as $transaction)
                         <tr>
                             <td>{{ $transaction->item->name ?? '-' }}</td>
-                            <td><span class="badge bg-primary">{{ ucfirst($transaction->type) }}</span></td>
-                            <td>{{ auth()->user()->role === 'admin' ? ($transaction->user->name ?? '-') : ucfirst($transaction->type) }}</td>
+                            <td>{{ auth()->user()->role === 'admin' ? ($transaction->user->name ?? '-') : ($transaction->status ?? 'Aktif') }}</td>
                             <td class="text-nowrap">{{ $transaction->formatted_transaction_date }}</td>
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="4" class="text-center text-secondary">Belum ada data.</td>
+                            <td colspan="3" class="text-center text-secondary">Belum ada data.</td>
                         </tr>
                     @endforelse
                 </tbody>

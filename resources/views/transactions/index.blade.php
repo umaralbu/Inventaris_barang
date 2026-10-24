@@ -9,7 +9,7 @@
             <a href="{{ route('transactions.export', request()->query()) }}" class="btn btn-outline-secondary">Ekspor CSV</a>
             <a href="{{ route('transactions.borrow') }}" class="btn btn-primary">Ambil Barang</a>
             <a href="{{ route('transactions.return') }}" class="btn btn-outline-light">Kembalikan Barang</a>
-            <a href="{{ route('transactions.transfer') }}" class="btn btn-secondary">Perpindahan</a>
+            <a href="{{ route('transactions.transfer') }}" class="btn btn-secondary">Pindahkan Barang</a>
         </div>
     </div>
 
@@ -56,7 +56,6 @@
                 <thead>
                     <tr>
                         <th>Barang</th>
-                        <th>Jenis</th>
                         <th>Dipinjam oleh</th>
                         <th>Keperluan</th>
                         <th>Status</th>
@@ -84,7 +83,6 @@
                         @endphp
                         <tr>
                             <td>{{ $transaction->item->name ?? '-' }}</td>
-                            <td>{{ ucfirst($transaction->type) }}</td>
                             <td>{{ $transaction->to_person ?? $transaction->user->name ?? '-' }}</td>
                             <td>{{ $transaction->notes ?: '-' }}</td>
                             <td>
@@ -127,7 +125,7 @@
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="7" class="text-center text-secondary">Belum ada transaksi.</td>
+                            <td colspan="6" class="text-center text-secondary">Belum ada transaksi.</td>
                         </tr>
                     @endforelse
                 </tbody>

@@ -68,7 +68,6 @@
                         <option>Tersedia</option>
                         <option>Dipinjam</option>
                         <option>Dipindahkan</option>
-                        <option>Rusak</option>
                         <option>Hilang</option>
                     </select>
                 </div>

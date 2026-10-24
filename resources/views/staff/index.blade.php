@@ -16,7 +16,7 @@
             <table class="table align-middle">
                 <thead>
                     <tr>
-                        <th>#</th>
+                        <th>No</th>
                         <th>Nama Staf</th>
                         <th>Status</th>
                         <th>Aksi</th>

@@ -443,7 +443,7 @@
             color: #3a3835;
         }
 
-        .settings-button {
+        .theme-toggle-button {
             display: inline-flex;
             align-items: center;
             justify-content: center;
@@ -457,50 +457,15 @@
             transition: all 0.2s ease;
         }
 
-        .settings-button:hover,
-        .settings-button[aria-expanded="true"] {
+        .theme-toggle-button:hover {
             transform: translateY(-1px);
             background: rgba(255, 255, 255, 0.82);
         }
 
-        .settings-menu {
-            min-width: 240px;
-            padding: 1rem;
-            border: 1px solid var(--border);
-            border-radius: 14px;
-            background: var(--surface);
-            color: var(--text);
-            box-shadow: var(--shadow);
-        }
-
-        .settings-menu .form-check-label {
-            color: var(--text);
-            font-weight: 600;
-            cursor: pointer;
-        }
-
-        .settings-menu .form-check-input {
-            width: 2.4rem;
-            height: 1.3rem;
-            min-height: 1.3rem;
-            border-radius: 999px;
-            cursor: pointer;
-        }
-
-        body.dark-mode .settings-button {
+        body.dark-mode .theme-toggle-button {
             background: rgba(15, 23, 42, 0.7);
             color: #f8fafc;
             border-color: rgba(148, 163, 184, 0.2);
-        }
-
-        body.dark-mode .settings-menu {
-            background: #111827;
-            border-color: rgba(148, 163, 184, 0.24);
-            color: #f8fafc;
-        }
-
-        body.dark-mode .settings-menu .form-check-label {
-            color: #f8fafc;
         }
 
         .badge {
@@ -992,8 +957,6 @@
         body.dark-mode .page-header,
         body.dark-mode .page-header h3,
         body.dark-mode .modal-title,
-        body.dark-mode .settings-menu,
-        body.dark-mode .settings-menu .form-check-label,
         body.dark-mode .form-control,
         body.dark-mode .form-select {
             color: var(--text);
@@ -1186,18 +1149,9 @@
                         </div>
                     </div>
                     <div class="d-flex align-items-center gap-2">
-                        <div class="dropstart">
-                            <button type="button" class="settings-button" id="settingsMenuButton" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false" aria-label="Pengaturan" title="Pengaturan">
-                                <i class="bi bi-gear-fill" aria-hidden="true"></i>
-                            </button>
-                            <div class="dropdown-menu settings-menu" aria-labelledby="settingsMenuButton">
-                                <div class="small text-uppercase fw-bold text-secondary mb-3">Pengaturan tampilan</div>
-                                <div class="form-check form-switch d-flex align-items-center justify-content-between gap-3 m-0 p-0">
-                                    <label class="form-check-label" for="themeToggle">Mode gelap</label>
-                                    <input class="form-check-input m-0" type="checkbox" role="switch" id="themeToggle" aria-label="Aktifkan mode gelap">
-                                </div>
-                            </div>
-                        </div>
+                        <button type="button" class="theme-toggle-button" id="themeToggle" aria-label="Aktifkan mode gelap" title="Aktifkan mode gelap">
+                            <i class="bi bi-moon-fill" aria-hidden="true"></i>
+                        </button>
                         <form action="{{ route('logout') }}" method="POST">
                             @csrf
                             <button type="submit" class="btn btn-outline-light">Logout</button>
@@ -1239,7 +1193,12 @@
 
         const applyTheme = (isDark) => {
             document.body.classList.toggle('dark-mode', isDark);
-            if (themeToggle) themeToggle.checked = isDark;
+            if (themeToggle) {
+                const label = isDark ? 'Aktifkan mode terang' : 'Aktifkan mode gelap';
+                themeToggle.setAttribute('aria-label', label);
+                themeToggle.title = label;
+                themeToggle.innerHTML = `<i class="bi ${isDark ? 'bi-sun-fill' : 'bi-moon-fill'}" aria-hidden="true"></i>`;
+            }
             localStorage.setItem('inventory-theme', isDark ? 'dark' : 'light');
         };
 
@@ -1251,8 +1210,8 @@
         }
 
         if (themeToggle) {
-            themeToggle.addEventListener('change', () => {
-                applyTheme(themeToggle.checked);
+            themeToggle.addEventListener('click', () => {
+                applyTheme(!document.body.classList.contains('dark-mode'));
             });
         }
 

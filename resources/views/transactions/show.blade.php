@@ -22,7 +22,6 @@
         <h4 class="mb-3">Detail Transaksi</h4>
         <table class="table">
             <tr><th>Barang</th><td>{{ $transaction->item->name ?? '-' }}</td></tr>
-            <tr><th>Jenis</th><td>{{ ucfirst($transaction->type) }}</td></tr>
             <tr><th>Dipinjam oleh</th><td>{{ $transaction->to_person ?? $transaction->user->name ?? '-' }}</td></tr>
             <tr><th>Oleh admin</th><td>{{ $transaction->user->name ?? '-' }}</td></tr>
             <tr><th>Dari lokasi</th><td>{{ $transaction->from_location ?? $transaction->from_person ?? '-' }}</td></tr>
