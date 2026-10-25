@@ -14,9 +14,7 @@
                 <thead>
                     <tr>
                         <th>No</th>
-                        <th>Nama</th>
                         <th>Username</th>
-                        <th>Email</th>
                         <th>Role</th>
                         <th>Aksi</th>
                     </tr>
@@ -25,9 +23,7 @@
                     @forelse($users as $user)
                         <tr>
                             <td>{{ $loop->iteration }}</td>
-                            <td>{{ $user->name }}</td>
                             <td>{{ $user->username }}</td>
-                            <td>{{ $user->email }}</td>
                             <td><span class="badge bg-info text-dark">{{ ucfirst($user->role) }}</span></td>
                             <td>
                                 <a href="{{ route('users.edit', $user) }}" class="btn btn-sm btn-secondary">Edit</a>
@@ -42,7 +38,7 @@
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="6" class="text-center text-secondary">Belum ada pengguna.</td>
+                            <td colspan="4" class="text-center text-secondary">Belum ada pengguna.</td>
                         </tr>
                     @endforelse
                 </tbody>

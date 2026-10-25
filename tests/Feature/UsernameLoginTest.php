@@ -15,7 +15,6 @@ class UsernameLoginTest extends TestCase
         $admin = User::factory()->create([
             'name' => 'Admin Inventaris',
             'username' => 'admin',
-            'email' => 'admin@inventaris.com',
             'role' => User::ROLE_ADMIN,
         ]);
 
@@ -31,7 +30,6 @@ class UsernameLoginTest extends TestCase
         $pegawai = User::factory()->create([
             'name' => 'Pegawai',
             'username' => 'pegawai',
-            'email' => 'pegawai@inventaris.com',
             'role' => User::ROLE_USER,
         ]);
 

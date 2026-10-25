@@ -23,17 +23,14 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'name' => ['required', 'string', 'max:255'],
             'username' => ['required', 'alpha_dash', 'max:50', 'unique:users,username'],
-            'email' => ['required', 'email', 'unique:users,email'],
             'password' => ['required', 'min:6'],
             'role' => ['required', 'in:admin,user'],
         ]);
 
         User::create([
-            'name' => $validated['name'],
+            'name' => $validated['username'],
             'username' => $validated['username'],
-            'email' => $validated['email'],
             'password' => Hash::make($validated['password']),
             'role' => $validated['role'],
         ]);
@@ -54,16 +51,12 @@ class UserController extends Controller
     public function update(Request $request, User $user)
     {
         $validated = $request->validate([
-            'name' => ['required', 'string', 'max:255'],
             'username' => ['required', 'alpha_dash', 'max:50', 'unique:users,username,' . $user->id],
-            'email' => ['required', 'email', 'unique:users,email,' . $user->id],
             'role' => ['required', 'in:admin,user'],
             'password' => ['nullable', 'min:6'],
         ]);
 
-        $user->name = $validated['name'];
         $user->username = $validated['username'];
-        $user->email = $validated['email'];
         $user->role = $validated['role'];
 
         if ($request->filled('password')) {

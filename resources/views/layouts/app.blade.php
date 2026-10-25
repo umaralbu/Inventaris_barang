@@ -274,7 +274,26 @@
 
         .nav {
             display: grid;
-            gap: 8px;
+            gap: 16px;
+        }
+
+        .nav-section {
+            display: grid;
+            gap: 4px;
+        }
+
+        .nav-section-label {
+            margin: 0;
+            padding: 0 14px 4px;
+            color: var(--muted);
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            line-height: 1.4;
+        }
+
+        body.dark-mode .nav-section-label {
+            color: #94a3b8;
         }
 
         .nav-link {
@@ -288,45 +307,20 @@
             transition: all 0.2s ease;
         }
 
+        .nav-link .nav-icon {
+            flex: 0 0 19px;
+            font-size: 19px;
+            line-height: 1;
+            text-align: center;
+            color: inherit;
+        }
+
         .nav-link:hover,
         .nav-link.active {
             background: linear-gradient(135deg, rgba(183, 165, 138, 0.18), rgba(148, 163, 184, 0.12));
             color: #1f1d1b;
             transform: translateX(2px);
             box-shadow: inset 0 0 0 1px rgba(183, 165, 138, 0.3);
-        }
-
-        .info-toggle {
-            width: 100%;
-            border: 0;
-            background: transparent;
-            font: inherit;
-            text-align: left;
-            cursor: pointer;
-        }
-
-        .info-toggle .bi-chevron-down {
-            margin-left: auto;
-            transition: transform 0.15s ease;
-        }
-
-        .info-toggle[aria-expanded="true"] .bi-chevron-down {
-            transform: rotate(180deg);
-        }
-
-        .information-submenu {
-            display: grid;
-            gap: 4px;
-            margin-left: 0.55rem;
-            padding-left: 0.55rem;
-            border-left: 1px solid var(--border);
-        }
-
-        .nav-sublink {
-            padding: 0.55rem 0.75rem;
-            border-radius: 5px;
-            font-size: 0.92rem;
-            font-weight: 500;
         }
 
         .main-content {
@@ -1113,23 +1107,28 @@
                     </button>
                 </div>
                 <nav class="nav">
-                    <a class="nav-link {{ request()->routeIs('dashboard') ? 'active' : '' }}" href="{{ route('dashboard') }}">Dashboard</a>
-                    @php($informationIsActive = request()->routeIs('items.*', 'categories.*', 'locations.*', 'staff.*', 'users.*', 'transactions.*'))
-                    <button class="nav-link info-toggle {{ $informationIsActive ? 'active' : '' }}" type="button" data-bs-toggle="collapse" data-bs-target="#informationSubmenu" aria-expanded="{{ $informationIsActive ? 'true' : 'false' }}" aria-controls="informationSubmenu">
-                        <span>Informasi</span>
-                        <i class="bi bi-chevron-down" aria-hidden="true"></i>
-                    </button>
-                    <div class="collapse {{ $informationIsActive ? 'show' : '' }}" id="informationSubmenu">
-                        <div class="information-submenu">
-                            <a class="nav-link nav-sublink {{ request()->routeIs('items.*') ? 'active' : '' }}" href="{{ route('items.index') }}">Barang</a>
-                            @if(auth()->user()->role === 'admin')
-                                <a class="nav-link nav-sublink {{ request()->routeIs('categories.*') ? 'active' : '' }}" href="{{ route('categories.index') }}">Kategori</a>
-                                <a class="nav-link nav-sublink {{ request()->routeIs('locations.*') ? 'active' : '' }}" href="{{ route('locations.index') }}">Lokasi</a>
-                                <a class="nav-link nav-sublink {{ request()->routeIs('staff.*') ? 'active' : '' }}" href="{{ route('staff.index') }}">Staf</a>
-                                <a class="nav-link nav-sublink {{ request()->routeIs('users.*') ? 'active' : '' }}" href="{{ route('users.index') }}">Pengguna</a>
-                            @endif
-                            <a class="nav-link nav-sublink {{ request()->routeIs('transactions.*') ? 'active' : '' }}" href="{{ route('transactions.index') }}">Transaksi</a>
+                    <div class="nav-section">
+                        <div class="nav-section-label">MENU UTAMA</div>
+                        <a class="nav-link {{ request()->routeIs('dashboard') ? 'active' : '' }}" href="{{ route('dashboard') }}"><i class="bi bi-grid-1x2 nav-icon" aria-hidden="true"></i><span>Dashboard</span></a>
+                    </div>
+                    <div class="nav-section">
+                        <div class="nav-section-label">MANAJEMEN INVENTARIS</div>
+                        <a class="nav-link {{ request()->routeIs('items.*') ? 'active' : '' }}" href="{{ route('items.index') }}"><i class="bi bi-box-seam nav-icon" aria-hidden="true"></i><span>Barang</span></a>
+                        @if(auth()->user()->role === 'admin')
+                            <a class="nav-link {{ request()->routeIs('categories.*') ? 'active' : '' }}" href="{{ route('categories.index') }}"><i class="bi bi-tags nav-icon" aria-hidden="true"></i><span>Kategori</span></a>
+                            <a class="nav-link {{ request()->routeIs('locations.*') ? 'active' : '' }}" href="{{ route('locations.index') }}"><i class="bi bi-geo-alt nav-icon" aria-hidden="true"></i><span>Lokasi</span></a>
+                        @endif
+                    </div>
+                    @if(auth()->user()->role === 'admin')
+                        <div class="nav-section">
+                            <div class="nav-section-label">MANAJEMEN PENGGUNA</div>
+                            <a class="nav-link {{ request()->routeIs('staff.*') ? 'active' : '' }}" href="{{ route('staff.index') }}"><i class="bi bi-person-vcard nav-icon" aria-hidden="true"></i><span>Staf</span></a>
+                            <a class="nav-link {{ request()->routeIs('users.*') ? 'active' : '' }}" href="{{ route('users.index') }}"><i class="bi bi-people nav-icon" aria-hidden="true"></i><span>Pengguna</span></a>
                         </div>
+                    @endif
+                    <div class="nav-section">
+                        <div class="nav-section-label">AKTIVITAS BARANG</div>
+                        <a class="nav-link {{ request()->routeIs('transactions.*') ? 'active' : '' }}" href="{{ route('transactions.index') }}"><i class="bi bi-arrow-left-right nav-icon" aria-hidden="true"></i><span>Transaksi</span></a>
                     </div>
                 </nav>
             </aside>
@@ -1316,7 +1315,7 @@
 
         // Close mobile sidebar on nav item click
         if (appShell) {
-            appShell.querySelectorAll('.sidebar .nav-link:not(.info-toggle)').forEach((link) => {
+            appShell.querySelectorAll('.sidebar .nav-link').forEach((link) => {
                 link.addEventListener('click', () => {
                     if (isMobileScreen()) {
                         appShell.classList.remove('sidebar-open');

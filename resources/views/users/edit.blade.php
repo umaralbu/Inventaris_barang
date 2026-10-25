@@ -10,16 +10,8 @@
             @method('PUT')
             <div class="row g-3">
                 <div class="col-md-6">
-                    <label class="form-label">Nama</label>
-                    <input type="text" name="name" class="form-control" value="{{ old('name', $user->name) }}" required>
-                </div>
-                <div class="col-md-6">
                     <label class="form-label">Username</label>
                     <input type="text" name="username" class="form-control" value="{{ old('username', $user->username) }}" autocomplete="username" required>
-                </div>
-                <div class="col-md-6">
-                    <label class="form-label">Email</label>
-                    <input type="email" name="email" class="form-control" value="{{ old('email', $user->email) }}" required>
                 </div>
                 <div class="col-md-6">
                     <label class="form-label">Password Baru</label>
