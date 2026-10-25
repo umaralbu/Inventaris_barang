@@ -79,7 +79,6 @@ class TransactionController extends Controller
             'transaction_date' => ['required', 'date'],
             'transaction_time' => ['nullable', 'regex:/^(?:[01]\d|2[0-3]):[0-5]\d(?::[0-5]\d)?$/'],
             'quantity' => ['required', 'integer', 'min:1'],
-            'notes' => ['nullable', 'string'],
         ], [
             'transaction_date.required' => 'Tanggal transaksi wajib diisi.',
             'transaction_date.date' => 'Format tanggal transaksi tidak valid.',
@@ -110,7 +109,7 @@ class TransactionController extends Controller
                 'quantity' => $validated['quantity'],
                 'transaction_date' => $fullDateTime,
                 'condition' => $item->condition,
-                'notes' => trim(($validated['purpose'] ?? '') . (empty($validated['notes']) ? '' : ' - ' . $validated['notes'])),
+                'notes' => $validated['purpose'] ?? null,
             ]);
         });
 

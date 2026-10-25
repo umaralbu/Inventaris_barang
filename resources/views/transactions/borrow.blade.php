@@ -54,10 +54,6 @@
                     <label class="form-label">Keperluan</label>
                     <input type="text" name="purpose" class="form-control">
                 </div>
-                <div class="col-md-12">
-                    <label class="form-label">Keterangan</label>
-                    <textarea name="notes" class="form-control" rows="3"></textarea>
-                </div>
             </div>
             <div class="mt-3">
                 <button type="submit" class="btn btn-primary">Simpan</button>

@@ -7,8 +7,10 @@
         <h4 class="mb-0">Daftar Transaksi</h4>
         <div class="d-flex gap-2 flex-wrap">
             <a href="{{ route('transactions.export', request()->query()) }}" class="btn btn-outline-secondary">Ekspor CSV</a>
-            <a href="{{ route('transactions.borrow') }}" class="btn btn-primary">Ambil Barang</a>
-            <a href="{{ route('transactions.return') }}" class="btn btn-outline-light">Kembalikan Barang</a>
+            @if(auth()->user()->role !== 'admin')
+                <a href="{{ route('transactions.borrow') }}" class="btn btn-primary">Ambil Barang</a>
+                <a href="{{ route('transactions.return') }}" class="btn btn-outline-light">Kembalikan Barang</a>
+            @endif
             <a href="{{ route('transactions.transfer') }}" class="btn btn-secondary">Pindahkan Barang</a>
         </div>
     </div>
@@ -55,6 +57,7 @@
             <table class="table">
                 <thead>
                     <tr>
+                        <th>Kode Barang</th>
                         <th>Barang</th>
                         <th>Dipinjam oleh</th>
                         <th>Keperluan</th>
@@ -82,6 +85,7 @@
                             };
                         @endphp
                         <tr>
+                            <td>{{ $transaction->item->code ?? '-' }}</td>
                             <td>{{ $transaction->item->name ?? '-' }}</td>
                             <td>{{ $transaction->to_person ?? $transaction->user->name ?? '-' }}</td>
                             <td>{{ $transaction->notes ?: '-' }}</td>
@@ -125,7 +129,7 @@
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="6" class="text-center text-secondary">Belum ada transaksi.</td>
+                            <td colspan="7" class="text-center text-secondary">Belum ada transaksi.</td>
                         </tr>
                     @endforelse
                 </tbody>

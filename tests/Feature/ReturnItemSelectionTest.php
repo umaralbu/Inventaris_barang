@@ -79,6 +79,7 @@ class ReturnItemSelectionTest extends TestCase
         $this->assertSame('Menunggu Persetujuan', $borrow->status);
         $this->assertSame('Gudang', $borrow->from_location);
         $this->assertSame('Ruang Rapat', $borrow->to_location);
+        $this->assertSame('Kegiatan kantor', $borrow->notes);
         $this->assertSame(4, $item->fresh()->quantity);
 
         $this->get(route('transactions.return'))
